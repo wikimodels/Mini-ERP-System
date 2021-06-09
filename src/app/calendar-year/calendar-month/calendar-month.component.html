@@ -1,0 +1,19 @@
+<mat-expansion-panel [expanded]="panelState">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ month.longMonthName }}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <ng-template matExpansionPanelContent>
+    <mat-grid-list cols="7" rowHeight="1:1" class="responsive-calendar-grid">
+      <mat-grid-tile>ПН</mat-grid-tile>
+      <mat-grid-tile>ВТ</mat-grid-tile>
+      <mat-grid-tile>СР</mat-grid-tile>
+      <mat-grid-tile>ЧТ</mat-grid-tile>
+      <mat-grid-tile>ПТ</mat-grid-tile>
+      <mat-grid-tile>СБ</mat-grid-tile>
+      <mat-grid-tile>ВС</mat-grid-tile>
+      <mat-grid-tile *ngFor="let day of month.calendarDays">
+        <app-calendar-day [day]="day" [incomeTypes]="incomeTypes"></app-calendar-day>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
+</mat-expansion-panel>

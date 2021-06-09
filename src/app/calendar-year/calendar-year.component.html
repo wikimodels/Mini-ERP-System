@@ -1,0 +1,28 @@
+<div fxLayout="row" fxLayoutAlign="space-around">
+  <ng-container *ngIf="calendarYear">
+    <div fxLayout="column" fxLayoutAlign="center center" class="container">
+      <div fxLayoutAlign="row" fxLayoutAlign="space-between center" style="width: 60px; margin-bottom: 15px;">
+        <div class="header">{{ calendarYear.yearNumber }}</div>
+        <div class="more-horiz" [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </div>
+      </div>
+
+      <!-- CONTROLS -->
+      <app-calendar-month class="responsive-table" *ngFor="let month of calendarYear.calendarMonths" [month]="month"
+        [incomeTypes]="incomeTypes"></app-calendar-month>
+    </div>
+  </ng-container>
+</div>
+
+<!-- NO RECORDS IN TABLE -->
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="goToIncomeJournal(calendarYear)">
+    <mat-icon>attach_money</mat-icon>
+    <span>Доходы</span>
+  </button>
+  <button mat-menu-item (click)="goToSettings(calendarYear)">
+    <mat-icon>settings</mat-icon>
+    <span>Параметры налоговых выплат</span>
+  </button>
+</mat-menu>

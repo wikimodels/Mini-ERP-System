@@ -1,0 +1,15 @@
+.info-snackbar {
+  color: white;
+  background-color: #53d8a0;
+}
+
+.warning-snackbar {
+  color: white;
+  background-color: #e6385e;
+}
+.mat-icon-button {
+  outline: none;
+}
+.snackbar {
+  width: 100%;
+}

@@ -1,0 +1,53 @@
+<div fxLayout="column" fxLayoutAlign="start center" style="width: 100%">
+  <h2>{{ data.title }}</h2>
+  <h3>{{ data.date }}</h3>
+
+  <form [formGroup]="form" *ngIf="form" class="form">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <!-- Doc Number -->
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Номер документа</mat-label>
+        <input matInput type="number" formControlName="docNumber" />
+      </mat-form-field>
+
+      <!-- Income Sum -->
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Сумма дохода</mat-label>
+        <input matInput type="number" formControlName="incomeSum" />
+        <mat-error *ngIf="form.get('incomeSum').errors?.required"
+          >Требуется ввести <strong>сумму</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('incomeSum').errors?.min"
+          >Сумма должна быть больше <strong>нуля</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Income Type Name -->
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Вид дохода</mat-label>
+        <mat-select formControlName="incomeTypeId">
+          <mat-option
+            *ngFor="let incomeType of incomeTypes"
+            [value]="incomeType.id"
+            >{{ incomeType.typeName }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        `<button mat-button color="primary" (click)="onSubmit()">
+          Сохранить
+          <mat-icon
+            ><mat-spinner
+              color="accent"
+              diameter="20"
+              *ngIf="loadingService.loading$ | async"
+            >
+            </mat-spinner
+          ></mat-icon>
+        </button>
+        <button mat-button (click)="cancel()">Отменить</button>
+      </div>
+    </div>
+  </form>
+</div>

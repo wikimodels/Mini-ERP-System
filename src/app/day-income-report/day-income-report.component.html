@@ -1,0 +1,97 @@
+<ng-container *ngIf="dataSource">
+  <div fxLayout="column" fxLayoutAlign="center center" class="container">
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <div class="header">Доходы</div>
+      <h3>{{ date }}</h3>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button color="primary" (click)="backToMonthIncomeReport()">
+        <mat-icon>reply</mat-icon>
+      </button>
+      <button mat-button color="accent" (click)="addIncomeRecord()">
+        <mat-icon>library_add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 data-table">
+      <!-- Document Number Column -->
+      <ng-container matColumnDef="docNumber">
+        <th mat-header-cell *matHeaderCellDef>№ документа</th>
+        <td mat-cell *matCellDef="let item">
+          {{ item.docNumber }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          Записи: <span>{{ dataSource.length }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Income Column -->
+      <ng-container matColumnDef="incomeSum">
+        <th mat-header-cell *matHeaderCellDef>Доход</th>
+        <td mat-cell *matCellDef="let item">
+          {{ item.incomeSum | number: "2." }} руб
+        </td>
+        <td mat-footer-cell *matFooterCellDef>
+          Итого: <span>{{ totalSum | number: "2." }} руб</span>
+        </td>
+      </ng-container>
+
+      <!-- Spinner Column -->
+      <ng-container matColumnDef="spinner">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let item"></td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let item">
+          <mat-icon class="icon-settings" (click)="editIncomeRecord(item)">edit</mat-icon>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let item; let i = index">
+          <!-- SPINNER -->
+          <mat-icon *ngIf="
+              (loadingService.loading$ | async) &&
+              deletedDayIncome &&
+              deletedDayIncome.id === item.id
+            " [class.remove-icon]="
+              !(loadingService.loading$ | async) &&
+              deletedDayIncome &&
+              deletedDayIncome.id === item.id
+            ">
+            <mat-spinner color="accent" diameter="20"> </mat-spinner>
+          </mat-icon>
+
+          <!-- МУСОРКА -->
+          <mat-icon [class.remove-icon]="
+              (loadingService.loading$ | async) &&
+              deletedDayIncome &&
+              deletedDayIncome.id === item.id
+            " class="icon-delete" (click)="deleteIncomeRecord(i, item)">delete</mat-icon>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
+  </ng-container>
+
+  <!-- NO RECORDS IN TABLE -->
+  <ng-container *ngIf="dataSource.length === 0">
+    <div fxLayout="row" fxLayoutAlign="space-around" class="table-subheader">
+      <span>В таблице пока нет записей</span>
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/basic-snackbar/basic-snackbar.component.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-expansion-panel {
+  max-height: 100vh !important;
+}
+.mat-expansion-panel-body {
+  padding: 0 10px 10px !important;
+}
+
+/* Activity Types */
+.mat-day-working {
+  background-color: green;
+  color: #fff;
+}
+
+.mat-day-off {
+  background-color: rgb(231, 12, 177);
+  color: #fff;
+}
+
+.mat-day-undefined {
+  background-color: rgb(90, 8, 167);
+  color: #fff;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 auto;
+}
+
+.responsive-table {
+  width: 70vw;
+  margin: 0 auto;
+}
+.container {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.form {
+  width: 220px;
+}
+.responsive-calendar-grid {
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+  .responsive-table {
+    width: 100vw;
+    margin: 0 auto;
+  }
+  .responsive-calendar-grid {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

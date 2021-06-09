@@ -1,0 +1,63 @@
+<div fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
+  <h2 style="text-align: center">{{ data.title }}</h2>
+
+
+  <form [formGroup]="form" class="form">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Год деятельности</mat-label>
+        <mat-select formControlName="yearNumber">
+          <mat-option *ngFor="let year of years" [value]="year.value">{{
+            year.key
+            }}</mat-option>
+        </mat-select>
+        <mat-spinner *ngIf="form.get('yearNumber').status === 'PENDING'" matPrefix [diameter]="18"
+          style="float: right; margin-left: 8px"></mat-spinner>
+        <mat-error *ngIf="form.get('yearNumber').errors?.required">Требуется ввести год
+        </mat-error>
+        <mat-error *ngIf="form.get('yearNumber').errors?.invalidYearAsync">
+          Такой год <strong>уже существует</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Месяц начала деятельности</mat-label>
+        <mat-select formControlName="monthActivityStart">
+          <mat-option *ngFor="let month of months" [value]="month.value">{{
+            month.key
+            }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('monthActivityStart').errors?.required">Требуется ввести месяц
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Месяц окончания деятельности</mat-label>
+        <mat-select formControlName="monthActivityEnd">
+          <mat-option *ngFor="let month of months" [value]="month.value">{{
+            month.key
+            }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('monthActivityEnd').errors?.required">Требуется ввести месяц
+        </mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="form.errors?.endLessThanStart">
+        Месяц конца деятельности меньше, чем
+        <strong>месяц начала деятельности</strong>
+      </mat-error>
+
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        `<button mat-button color="primary" (click)="onSubmit()">
+          {{ data.leftButtonText }}
+          <mat-icon>
+            <mat-spinner color="accent" diameter="20" *ngIf="loadingService.loading$ | async">
+            </mat-spinner>
+          </mat-icon>
+        </button>
+        <button mat-button (click)="cancel()">
+          {{ data.rightButtonText }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

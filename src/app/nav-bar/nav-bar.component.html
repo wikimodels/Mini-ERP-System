@@ -1,0 +1,45 @@
+<mat-toolbar class="mat-elevation-z6">
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+    <div class='home-logo' (click)="goHome()">Svetlana</div>
+    <div>
+      <mat-icon [matMenuTriggerFor]="menu" class="icon">more_vert</mat-icon>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="calendarYears" [disabled]="yearNumbers.length === 0">
+    <mat-icon>event</mat-icon>
+    <span>Календарь</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="income">
+    <mat-icon>attach_money</mat-icon>
+    <span>Доходы</span>
+  </button>
+  <button mat-menu-item (click)="goToAnalytics()">
+    <mat-icon>trending_up</mat-icon>
+    <span>Аналитика</span>
+  </button>
+  <button mat-menu-item (click)="goToWorkingYears()">
+    <mat-icon>inventory_2</mat-icon>
+    <span>Архив</span>
+  </button>
+</mat-menu>
+
+<mat-menu #calendarYears="matMenu">
+  <ng-container *ngFor="let year of yearNumbers"><button mat-menu-item (click)="goToCalendarView(year.yearId)">
+      {{ year.yearNumber }}
+    </button>
+  </ng-container>
+</mat-menu>
+
+<mat-menu #income="matMenu">
+  <button mat-menu-item (click)="goToIncomeJournal()">
+    <mat-icon>receipt_long</mat-icon>
+    <span>Журнал доходов</span>
+  </button>
+  <button mat-menu-item (click)="goToIncomeTypes()">
+    <mat-icon>price_check</mat-icon>
+    <span>Виды доходов</span>
+  </button>
+</mat-menu>

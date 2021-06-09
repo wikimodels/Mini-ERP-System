@@ -1,0 +1,41 @@
+<ng-container *ngIf="!deviceDetectorService.isMobile()">
+  <button mat-fab [color]="day.dayCSS" [matMenuTriggerFor]="menu" [disabled]="dayDisabled">
+    {{ day.dayNumberStr }}
+  </button>
+</ng-container>
+
+<ng-container *ngIf="deviceDetectorService.isMobile()">
+  <button mat-mini-fab [color]="day.dayCSS" [matMenuTriggerFor]="menu" [disabled]="dayDisabled">
+    {{ day.dayNumberStr }}
+  </button>
+</ng-container>
+
+
+<mat-menu #menu="matMenu" yPosition="below">
+  <ng-template matMenuContent>
+    <button mat-menu-item>{{ day.dayDateStr }}</button>
+    <button mat-menu-item [matMenuTriggerFor]="dayStatus">Статус</button>
+    <button mat-menu-item [matMenuTriggerFor]="income" *ngIf="dayIsWorking">
+      Доход
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #dayStatus="matMenu" yPosition="below">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="changeToWorkingDay()">Рабочий</button>
+    <button mat-menu-item (click)="changeToDayOff()">Нерабочий</button>
+    <button mat-menu-item (click)="changeToUndefinedDay()">Не определён</button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #income="matMenu" yPosition="below">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="addIncomeRecord()" *ngIf="dayIsWorking">
+      Добавить доход
+    </button>
+    <button mat-menu-item (click)="seeDayIncomes()" *ngIf="dayIsWorking">
+      Посмотреть доходы
+    </button>
+  </ng-template>
+</mat-menu>
