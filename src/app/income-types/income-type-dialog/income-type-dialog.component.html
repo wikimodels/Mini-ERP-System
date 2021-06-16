@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutAlign="start center" style="width: 100%">
+  <h2>{{ data.title }}</h2>
+
+  <form [formGroup]="form" *ngIf="form" class="form">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <!-- Income Type -->
+
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Вид дохода</mat-label>
+        <input type="text" matInput formControlName="typeName" />
+        <mat-spinner
+          *ngIf="form.get('typeName').status === 'PENDING'"
+          matSuffix
+          [diameter]="18"
+          style="float: right; margin-left: 8px"
+        ></mat-spinner>
+        <mat-error *ngIf="form.get('typeName').errors?.required">
+          Введите вид дохода
+        </mat-error>
+        <mat-error *ngIf="form.get('typeName').errors?.invalidIncomeTypeAsync">
+          Такой виде дохода <strong>уже существует</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('typeName').errors?.maxLength">
+          Запись может содержать <strong>максимум 20 символов</strong>
+        </mat-error>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        `<button mat-button color="primary" (click)="onSubmit()">
+          Сохранить
+          <mat-icon
+            ><mat-spinner
+              color="accent"
+              diameter="20"
+              *ngIf="loadingService.loading$ | async"
+            >
+            </mat-spinner
+          ></mat-icon>
+        </button>
+        <button mat-button (click)="cancel()">Отменить</button>
+      </div>
+    </div>
+  </form>
+</div>

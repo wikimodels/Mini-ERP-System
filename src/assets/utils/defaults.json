@@ -20,5 +20,10 @@
   "monthDataApi": {
     "incomeMonthlyRecords": [],
     "recordsCount": 0
+  },
+  "initialIncomeType": {
+    "id": "",
+    "email": "",
+    "typeName": "наличные"
   }
 }

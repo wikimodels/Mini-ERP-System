@@ -1,4 +1,4 @@
-import { CalendarYear } from 'src/models/calendar-year.model';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
 import { CalendarMonthIncomeReport } from 'src/models/income-yearly-report/calendar-month-income-report.model';
 import { CalendarYearIncomeReport } from 'src/models/income-yearly-report/calendar-year-income-report.model';
 

@@ -1,7 +1,5 @@
-import { CalendarDay } from 'src/models/calendar-day.model';
-import { CalendarYear } from 'src/models/calendar-year.model';
-
-import { DayCSS } from 'src/models/day-css.model';
+import { CalendarDay } from 'src/models/calendar-year/calendar-day.model';
+import { DayCSS } from 'src/models/enums/day-css.enum';
 import { CalendarDayIncomeReport } from 'src/models/income-yearly-report/calendar-day-income-report.model';
 import { DayIncome } from 'src/models/income-yearly-report/day-income.model';
 

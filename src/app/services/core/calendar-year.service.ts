@@ -7,6 +7,7 @@ import {
   GET_CALENDAR_YEAR_BY_EMAIL_AND_YEAR,
   GET_CALENDAR_YEAR_BY_ID,
   INSERT_CALENDAR_YEAR,
+  INSERT_MANY_CALENDAR_YEARS,
   UPDATE_CALENDAR_YEAR,
 } from 'ignored/urls.const';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -62,6 +63,19 @@ export class CalendarYearService {
   insertCalendarYear$(calendarYear: CalendarYear) {
     return this.http
       .post<CalendarYear>(INSERT_CALENDAR_YEAR(), calendarYear, {
+        headers: this.headers,
+      })
+      .pipe(
+        catchError((error) => {
+          console.log(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  insertManyCalendarYears$(calendarYears: CalendarYear[]) {
+    return this.http
+      .post<CalendarYear>(INSERT_MANY_CALENDAR_YEARS(), calendarYears, {
         headers: this.headers,
       })
       .pipe(

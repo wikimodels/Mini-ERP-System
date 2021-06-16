@@ -2,13 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Subscription } from 'rxjs';
+
 import { BasicSnackbarService } from 'src/app/basic-snackbar/basic-snackbar.service';
 import { MessageType } from 'src/app/basic-snackbar/models/message-type';
 import { CalendarYearViewService } from 'src/app/services/calendar-services/calendar-year-view.service';
 import { TimeService } from 'src/app/services/shared/time.service';
 import { DAY_INCOME_REPORT } from 'src/consts/url-consts';
-import { getDayIncomeDialogData } from 'src/functions/calendar-day-income-dialog/get-day-income-dialog-data';
+import * as defaults from '../../../assets/utils/defaults.json';
 import { CalendarDay } from 'src/models/calendar-year/calendar-day.model';
 import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 import { DayCSS } from 'src/models/enums/day-css.enum';
@@ -17,7 +17,6 @@ import { DayMomentumType } from 'src/models/enums/day-momentum-type.enum';
 import { CalendarIncomeDialogRecord } from 'src/models/income-yearly-report/calendar-income-dialog-record.model';
 import { IncomeType } from 'src/models/income-yearly-report/income-type.model';
 
-import * as defaults from '../../../assets/utils/defaults.json';
 import { CalendarIncomeDialogComponent } from '../calendar-income-dialog/calendar-income-dialog.component';
 @Component({
   selector: 'app-calendar-day',
@@ -60,11 +59,14 @@ export class CalendarDayComponent implements OnInit, OnDestroy {
 
   addIncomeRecord() {
     const dialogConfig = new MatDialogConfig();
-    const data: CalendarIncomeDialogRecord = getDayIncomeDialogData(
-      this.day,
-      this.incomeTypes,
-      this.date
-    );
+    const data: CalendarIncomeDialogRecord = {
+      title: defaults.addIncomeRecordTitle,
+      dayNumber: this.day.dayNumber,
+      monthNumber: this.day.monthNumber,
+      date: this.date,
+      incomeTypes: this.incomeTypes,
+      yearNumber: this.day.yearNumber,
+    };
 
     dialogConfig.data = data;
     const dialogRef = this.matDialog.open(

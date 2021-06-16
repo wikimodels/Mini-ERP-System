@@ -5,11 +5,11 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IncomeTypesService } from 'src/app/services/income-reports/income-types.service';
+import { IncomeTypeService } from 'src/app/services/core/income-type.service';
 
 export class IncomeTypeEditAsyncValidator {
   static createValidator(
-    incomeTypeServcie: IncomeTypesService,
+    incomeTypeServcie: IncomeTypeService,
     initialValue: string
   ): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors> => {

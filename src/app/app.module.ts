@@ -22,6 +22,11 @@ import { DefaultRouteReuseStrategy } from './default-route-reuse-strategy';
 import { DeleteItemDialogComponent } from './delete-item-dialog/delete-item-dialog.component';
 import { DayIncomeReportComponent } from './day-income-report/day-income-report.component';
 import { DayIncomeDialogComponent } from './day-income-report/day-income-dialog/day-income-dialog.component';
+import { IncomeTypesComponent } from './income-types/income-types.component';
+import { IncomeTypeDialogComponent } from './income-types/income-type-dialog/income-type-dialog.component';
+import { CalendarYearsTaxesParamsComponent } from './calendar-years-taxes-params/calendar-years-taxes-params.component';
+import { MonthsIncomeReportComponent } from './months-income-report/months-income-report.component';
+import { MonthIncomeExpansionPanelComponent } from './months-income-report/month-income-expansion-panel/month-income-expansion-panel.component';
 
 @NgModule({
   imports: [
@@ -41,6 +46,7 @@ import { DayIncomeDialogComponent } from './day-income-report/day-income-dialog/
     NavBarComponent,
     DeleteItemDialogComponent,
     CalendarYearComponent,
+    CalendarYearsTaxesParamsComponent,
     CalendarMonthComponent,
     CalendarDayComponent,
     CalendarIncomeDialogComponent,
@@ -48,6 +54,10 @@ import { DayIncomeDialogComponent } from './day-income-report/day-income-dialog/
     NoCalendarYearComponent,
     DayIncomeReportComponent,
     DayIncomeDialogComponent,
+    IncomeTypeDialogComponent,
+    IncomeTypesComponent,
+    MonthIncomeExpansionPanelComponent,
+    MonthsIncomeReportComponent,
   ],
 
   providers: [

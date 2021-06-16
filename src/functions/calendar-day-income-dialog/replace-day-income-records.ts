@@ -25,11 +25,19 @@ export function replaceDayIncomeRecords(
     );
 
     if (dayIndex > -1) {
+      console.log('dayIndex', dayIndex);
+      console.log('dayIncome', dayIncome);
+      console.log(
+        'dayIncomes',
+        calendarYear.calendarMonths[monthIndex].calendarDays[dayIndex]
+          .dayIncomes
+      );
       dayIncomeIndex = calendarYear.calendarMonths[monthIndex].calendarDays[
         dayIndex
       ].dayIncomes.findIndex((d) => d.id === dayIncome.id);
     }
 
+    console.log('dayIncomeIndex', dayIncomeIndex);
     if (dayIncomeIndex > -1) {
       console.log('dayIncomeIndex', dayIncomeIndex);
 

@@ -23,7 +23,8 @@ import { CalendarYearViewService } from '../services/calendar-services/calendar-
 import { getDayIncomeRecords } from 'src/functions/calendar-day-income-dialog/get-day-income-records';
 import { calculateTotalSum } from 'src/functions/calendar-day-income-dialog/calculate-total-sum';
 import { insertDayIncomeRecords } from 'src/functions/calendar-day-income-dialog/insert-day-income-records';
-import { DayIncomeRecordDialogData } from 'src/models/income-yearly-report/day-income-record-dialog-data.model';
+
+import { CalendarIncomeDialogRecord } from 'src/models/income-yearly-report/calendar-income-dialog-record.model';
 
 @Component({
   selector: 'app-day-income-report',
@@ -101,14 +102,14 @@ export class DayIncomeReportComponent implements OnInit, OnDestroy {
 
   addIncomeRecord() {
     const dialogConfig = new MatDialogConfig();
-    const data: DayIncomeRecordDialogData = {
+    const data: CalendarIncomeDialogRecord = {
       title: defaults.addIncomeRecordTitle,
       dayNumber: this.dayNumber,
       monthNumber: this.monthNumber,
       calendarYear: this.calendarYear,
       date: this.date,
       incomeTypes: this.incomeTypes,
-      dayIncome: undefined,
+      yearNumber: this.yearNumber,
     };
 
     dialogConfig.data = data;
@@ -131,16 +132,17 @@ export class DayIncomeReportComponent implements OnInit, OnDestroy {
     );
   }
 
-  editIncomeRecord(item: DayIncome) {
+  editIncomeRecord(dayIncome: DayIncome) {
     const dialogConfig = new MatDialogConfig();
-    const data: DayIncomeRecordDialogData = {
+    const data: CalendarIncomeDialogRecord = {
       title: defaults.editIncomeRecordTitle,
       dayNumber: this.dayNumber,
       monthNumber: this.monthNumber,
       calendarYear: this.calendarYear,
       date: this.date,
       incomeTypes: this.incomeTypes,
-      dayIncome: item,
+      dayIncome: dayIncome,
+      yearNumber: this.yearNumber,
     };
 
     dialogConfig.data = data;
@@ -157,11 +159,11 @@ export class DayIncomeReportComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteIncomeRecord(index: number, item: DayIncome) {
-    console.log('DI', item);
+  deleteIncomeRecord(index: number, dayIncome: DayIncome) {
+    console.log('DI', dayIncome);
     console.log(index);
     const data = this.dataSource.filter((value, i) => index != i);
-    this.deletedDayIncome = item;
+    this.deletedDayIncome = dayIncome;
     this.loadingService.loadingOn();
     const calendarYear = insertDayIncomeRecords(
       this.dayNumber,

@@ -1,0 +1,89 @@
+<ng-container *ngIf="calendarYear">
+  <div fxLayout="column" fxLayoutAlign="center center" class="working-year-container" fxLayoutGap="15px">
+    <div class="header">
+      Параметры налоговых выплат
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between" style="width:80px">
+      <div class="header">
+        {{calendarYear.yearNumber}}
+      </div>
+      <div [hidden]="!hide">
+        <mat-icon class="accordion-openner" (click)="openAccordion()">open_in_full</mat-icon>
+      </div>
+      <div [hidden]="hide" class="accordion-openner">
+        <mat-icon (click)="closeAccordion()"> close_fullscreen</mat-icon>
+      </div>
+    </div>
+
+    <form [formGroup]="form" *ngIf="form" class="responsive-table">
+      <mat-accordion multi>
+        <mat-expansion-panel formArrayName="calendarMonths" *ngFor="let month of calendarMonths().controls; index as i">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{
+              month.get("longMonthName").value
+              }}</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div [formGroupName]="i" style="margin-bottom: 20px">
+            <div fxLayout="column" fxLayoutAlign="start center">
+              <!-- INCOME -->
+              <mat-form-field class="full-width">
+                <mat-label>Месячный доход</mat-label>
+                <input matInput type="number" formControlName="income" />
+                <span matSuffix>рублей</span>
+                <!-- ERRORS -->
+                <mat-error *ngIf="month.get('income').errors?.required">Введите <strong>месячный доход</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('income').errors?.pattern">Вводите <strong>только цифры!</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- PENSION TAX -->
+              <mat-form-field class="full-width">
+                <mat-label>Пенсионное страхование</mat-label>
+                <input matInput formControlName="pensionTaxRate" type="number" />
+                <span matSuffix>%</span>
+                <!-- ERRORS -->
+                <mat-error *ngIf="month.get('pensionTaxRate').errors?.max">Процент налоге не может быть
+                  <strong>более 100</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('pensionTaxRate').errors?.min">Процент налоге не может быть
+                  <strong>менее 0</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('pensionTaxRate').errors?.required">Введите ставку
+                  <strong>налога по пенсионному страхованию</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('pensionTaxRate').errors?.pattern">Вводите <strong>только цифры!</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <!-- SOCIAL TAX -->
+              <mat-form-field class="full-width">
+                <mat-label>Социальное страхование</mat-label>
+                <input matInput formControlName="socialTaxRate" type="number" />
+                <span matSuffix>%</span>
+                <!-- ERRORS -->
+                <mat-error *ngIf="month.get('socialTaxRate').errors?.required">Введите ставку
+                  <strong>налога по соц. страхованию</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('socialTaxRate').errors?.max">Процент налогa не может быть
+                  <strong>более 100</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('socialTaxRate').errors?.min">Процент налоге не может быть
+                  <strong>менее 0</strong>
+                </mat-error>
+                <mat-error *ngIf="month.get('socialTaxRate').errors?.pattern">Вводите <strong>только цифры!</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayoutAlign="end start">
+            <button mat-button (click)="onSubmit()">
+              <mat-icon>save</mat-icon> Сохранить
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </div>
+</ng-container>

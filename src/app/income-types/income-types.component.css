@@ -1,0 +1,26 @@
+/* .table-header {
+  font-size: 18px;
+  font-weight: 500;
+}
+.table-subheader {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: 300;
+} */
+.data-table {
+  width: 100%;
+}
+
+.mat-column-delete,
+.mat-column-edit {
+  width: 10% !important;
+}
+
+.mat-column-spinner1 {
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+.remove-icon {
+  display: none;
+}

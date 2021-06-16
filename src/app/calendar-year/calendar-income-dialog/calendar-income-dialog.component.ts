@@ -2,12 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CalendarDayIncomeService } from 'src/app/services/calendar-services/calendar-day-income.service';
-import { CalendarYearCrudService } from 'src/app/services/calendar-services/calendar-year-crud.service';
 
 import { LoadingService } from 'src/app/services/shared/loading.service';
+import { createDayIncome } from 'src/functions/calendar-day-income-dialog/create-day-income';
 import { getDayIncomeRecordForm } from 'src/functions/calendar-day-income-dialog/get-day-income-record-form';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
 
 import { CalendarIncomeDialogRecord } from 'src/models/income-yearly-report/calendar-income-dialog-record.model';
+import { DayIncome } from 'src/models/income-yearly-report/day-income.model';
 import { IncomeType } from 'src/models/income-yearly-report/income-type.model';
 
 @Component({
@@ -34,6 +36,7 @@ export class CalendarIncomeDialogComponent implements OnInit {
     if (this.form.status === 'VALID') {
       this.loadingService.loadingOn();
       const { docNumber, incomeSum, incomeTypeId } = this.form.value;
+
       this.calendarDayIncomeService
         .addIncomeRecord$(
           this.data.dayNumber,

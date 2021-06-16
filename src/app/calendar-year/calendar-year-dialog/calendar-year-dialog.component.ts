@@ -45,8 +45,8 @@ export class CalendarYearDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loadingService.loadingOn();
     if (this.form.status === 'VALID' && this.data.actionType === 'create') {
+      this.loadingService.loadingOn();
       const { yearNumber, monthActivityStart, monthActivityEnd } =
         this.form.value;
 
@@ -63,6 +63,7 @@ export class CalendarYearDialogComponent implements OnInit {
     }
 
     if (this.form.status === 'VALID' && this.data.actionType === 'update') {
+      this.loadingService.loadingOn();
       const { monthActivityStart, monthActivityEnd } = this.form.value;
 
       this.calendarYearCrudService
@@ -83,7 +84,7 @@ export class CalendarYearDialogComponent implements OnInit {
 
     if (this.data.actionType === 'delete') {
       console.log(this.form);
-
+      this.loadingService.loadingOn();
       this.calendarYearCrudService
         .deleteWorkingYear$(this.data.calendarYear)
         .subscribe(

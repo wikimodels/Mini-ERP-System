@@ -8,14 +8,16 @@ export function createDayIncome(
   incomeSum: number,
   incomeTypeId: string,
   date: string,
-  incomeTypes: IncomeType[]
+  incomeTypes: IncomeType[],
+  dayIncomeId: string
 ): DayIncome {
   const incomeTypeName = incomeTypes.find((t) => t.id == incomeTypeId).typeName;
 
-  const dayIncomeId = Guid.create().toString();
+  const myDayIncomeId =
+    dayIncomeId === undefined ? Guid.create().toString() : dayIncomeId;
 
   const dayIncome: DayIncome = {
-    id: dayIncomeId,
+    id: myDayIncomeId,
     dayDateStr: date,
     dayCSS: DayCSS.DAY_WORKING,
     docNumber: docNumber,

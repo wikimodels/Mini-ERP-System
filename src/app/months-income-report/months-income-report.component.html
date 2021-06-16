@@ -1,0 +1,24 @@
+<ng-container *ngIf="yearIncomeReport">
+  <div fxLayout="column" fxLayoutAlign="center center" class="working-year-container" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="space-between" style="width:190px">
+      <div class="header">
+        Доходы - {{yearIncomeReport.yearNumber}}
+      </div>
+      <div [hidden]="!hide">
+        <mat-icon class="accordion-openner" (click)="openAccordion()">open_in_full</mat-icon>
+      </div>
+      <div [hidden]="hide" class="accordion-openner">
+        <mat-icon (click)="closeAccordion()"> close_fullscreen</mat-icon>
+      </div>
+    </div>
+
+    <div class="responsive-table">
+      <mat-accordion multi>
+        <ng-container *ngFor="let month of yearIncomeReport.monthsIncomeReports">
+          <app-month-income-expansion-panel [month]="month" [yearNumber]="yearIncomeReport.yearNumber"
+            [monthNumber]="monthNumber"></app-month-income-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </div>
+  </div>
+</ng-container>

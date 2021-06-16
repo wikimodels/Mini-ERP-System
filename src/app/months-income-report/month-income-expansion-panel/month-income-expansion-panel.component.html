@@ -1,0 +1,34 @@
+<mat-expansion-panel [expanded]="panelState">
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{ month.longMonthName }}</mat-panel-title>
+    <mat-panel-description style="text-align: left">
+      <span *ngIf="month.monthIncomeTotal > 0">
+        Всего: {{ month.monthIncomeTotal | number: "2." }} руб</span>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <ng-template matExpansionPanelContent>
+    <mat-grid-list cols="7" rowHeight="50px" class="responsive-calendar-grid">
+      <mat-grid-tile>ПН</mat-grid-tile>
+      <mat-grid-tile>ВТ </mat-grid-tile>
+      <mat-grid-tile>СР </mat-grid-tile>
+      <mat-grid-tile>ЧТ </mat-grid-tile>
+      <mat-grid-tile>ПТ </mat-grid-tile>
+      <mat-grid-tile>СБ </mat-grid-tile>
+      <mat-grid-tile>ВС </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="7" rowHeight="100px" class="responsive-calendar-grid">
+      <ng-container *ngFor="let day of month.daysIncomeRecords">
+        <mat-grid-tile matRipple [class]="[day.dayCSS, 'tile']" (click)="goToDayIncomeReport(day)">
+          <div *ngIf="day.dayMomentumType === momentumType.CURRENT" class="orientation">
+            <span> {{ day.dayNumberStr }} {{ month.shortMonthName }}</span>
+            <div *ngIf="day.dayIncomeTotal > 0">
+              <i>
+                <span class="sum">{{ day.dayIncomeTotal | number: "2." }} руб</span></i>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+  </ng-template>
+</mat-expansion-panel>

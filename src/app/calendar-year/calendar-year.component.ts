@@ -29,7 +29,6 @@ export class CalendarYearComponent implements OnInit, OnDestroy, AfterViewInit {
         if (value && value.calendarYear && value.incomeTypes.length > 0) {
           this.calendarYear = value.calendarYear;
           this.incomeTypes = value.incomeTypes;
-          console.log('CY value', value);
         }
       }
     );
