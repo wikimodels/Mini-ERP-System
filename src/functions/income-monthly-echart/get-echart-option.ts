@@ -1,4 +1,4 @@
-import { CalendarYear } from 'src/models/calendar-year.model';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
 import { EchartMonthIncome } from 'src/models/echart-income/echart-month-income.model';
 import { createEchartMonthIncome } from './create-echart-month-income';
 import { createEchartOption } from './create-echart-option';

@@ -1,4 +1,3 @@
-import { GrouppedDayIncome } from 'src/models/echart-income-stacked/groupped-day-income.model';
 import { GrouppedMonthIncome } from 'src/models/echart-income-stacked/groupped-month-income.model';
 import { createEchartLegend } from './create-echart-legend';
 import { createEchartStackSeries } from './create-echart-stack-series';

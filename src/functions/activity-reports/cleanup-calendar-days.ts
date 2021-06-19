@@ -1,6 +1,6 @@
-import { CalendarDay } from 'src/models/calendar-day.model';
-import { CalendarYear } from 'src/models/calendar-year.model';
-import { DayMomentumType } from 'src/models/day-momentum-type.model copy';
+import { CalendarDay } from 'src/models/calendar-year/calendar-day.model';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
+import { DayMomentumType } from 'src/models/enums/day-momentum-type.enum';
 
 export function cleanupCalendarDays(calendarYear: CalendarYear): CalendarDay[] {
   let calendarDays: CalendarDay[] = [];

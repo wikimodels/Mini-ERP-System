@@ -4,10 +4,11 @@ import { CalendarYear } from '../../models/calendar-year/calendar-year.model';
 export function getCopyToCalendarYear(
   monthActivityStart: number,
   monthActivityEnd: number,
-  yearNumber: number
+  yearNumber: number,
+  email: string
 ): CalendarYear {
   const copyTo: CalendarYear = fillInCalendarYear(
-    this.authService.getUserEmail(),
+    email,
     monthActivityStart,
     monthActivityEnd,
     yearNumber

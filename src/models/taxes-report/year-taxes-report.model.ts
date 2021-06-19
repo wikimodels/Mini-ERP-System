@@ -1,6 +1,7 @@
 import { getTaxValue } from 'src/functions/taxes-reports/get-tax-value';
-import { CalendarMonth } from '../calendar-month.model';
-import { CalendarYear } from '../calendar-year.model';
+import { CalendarMonth } from '../calendar-year/calendar-month.model';
+import { CalendarYear } from '../calendar-year/calendar-year.model';
+
 import { IMonthTaxesReport } from './i-month-taxes-report.model.';
 import { IYearTaxesReport } from './i-year-taxes-report.model';
 

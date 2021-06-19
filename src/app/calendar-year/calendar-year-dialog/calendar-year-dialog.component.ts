@@ -10,8 +10,9 @@ import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
 
 import { CalendarYearDialogRecord } from 'src/models/calendar-year/calendar-year-dialog-record.model';
 import { DeleteItemDialogComponent } from 'src/app/delete-item-dialog/delete-item-dialog.component';
-import { getCalendarYearForm } from 'src/functions/calendar-year-dialog/get-calendar-year-form';
+
 import { CalendarYearCrudService } from 'src/app/services/calendar-services/calendar-year-crud.service';
+import { getCalendarYearCreateDialogForm } from 'src/functions/calendar-year-dialog/get-calendar-year-create-dialog-form';
 
 @Component({
   selector: 'app-calendar-year-dialog',
@@ -31,7 +32,7 @@ export class CalendarYearDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.actionType === 'create') {
-      this.form = getCalendarYearForm();
+      this.form = getCalendarYearCreateDialogForm();
       console.log(this.form);
     }
 
@@ -53,7 +54,7 @@ export class CalendarYearDialogComponent implements OnInit {
       this.calendarYearCrudService
         .createCalendarYear$(monthActivityStart, monthActivityEnd, yearNumber)
         .subscribe(
-          (value: CalendarYear) => {
+          (value: CalendarYear[]) => {
             this.dialogRef.close(value);
           },
           (error) => {
@@ -67,13 +68,13 @@ export class CalendarYearDialogComponent implements OnInit {
       const { monthActivityStart, monthActivityEnd } = this.form.value;
 
       this.calendarYearCrudService
-        .updateWorkingYear$(
+        .updateCalendarYear$(
           monthActivityStart,
           monthActivityEnd,
           this.data.calendarYear
         )
         .subscribe(
-          (value: CalendarYear) => {
+          (value: CalendarYear[]) => {
             this.dialogRef.close(value);
           },
           (error) => {
@@ -86,7 +87,7 @@ export class CalendarYearDialogComponent implements OnInit {
       console.log(this.form);
       this.loadingService.loadingOn();
       this.calendarYearCrudService
-        .deleteWorkingYear$(this.data.calendarYear)
+        .deleteCalendarYear$(this.data.calendarYear)
         .subscribe(
           (value: CalendarYear[]) => {
             this.dialogRef.close(value);

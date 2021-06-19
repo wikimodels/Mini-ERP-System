@@ -1,0 +1,36 @@
+.demo-chart {
+  height: 400px;
+  width: 100%;
+}
+.mat-tab-header-pagination-chevron {
+  display: none;
+}
+.subheader {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  text-align: center;
+}
+.header {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.header-container {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.checkbox-container {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.subheader-container {
+  width: 80px;
+  height: 40px;
+  margin: 0 auto;
+}

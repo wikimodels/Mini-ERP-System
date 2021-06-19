@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
+  ANALYTICS,
   CALENDAR_YEAR,
+  CALENDAR_YEARS_ARCHIVE,
   CALENDAR_YEARS_TAXES_PARAMS,
   INCOME_TYPES,
-  MONTH_INCOME_REPORT,
+  MONTHS_INCOME_REPORT,
   NO_CALENDAR_YEAR,
 } from 'src/consts/url-consts';
 import { YearNumber } from 'src/models/nav-bar/year-numbers.model';
@@ -40,9 +42,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
     });
   }
 
-  goToWorkingYears() {
-    //this.router.navigate([WORKING_YEARS]);
+  goToCalendarYearsAchive() {
+    this.router.navigate([CALENDAR_YEARS_ARCHIVE]);
   }
+
   goToIncomeTypes() {
     this.router.navigate([INCOME_TYPES]);
   }
@@ -62,13 +65,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   goToAnalytics() {
-    const yearNumber = this.navBarService.getInitialYearNumber(
-      this.yearNumbers
-    );
-
-    this.router.navigate([MONTH_INCOME_REPORT], {
-      queryParams: { yearNumber: 2021, monthNumber: 2 },
-    });
+    this.router.navigate([ANALYTICS]);
   }
 
   goHome() {

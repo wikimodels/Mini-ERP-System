@@ -1,5 +1,6 @@
 import { ActivityPeriod } from 'src/models/activity-report/activity-period.model';
-import { CalendarDay } from 'src/models/calendar-day.model';
+import { CalendarDay } from 'src/models/calendar-year/calendar-day.model';
+
 import { addLeadingZero } from '../add-leading-zero';
 
 export function createActivityPeriods(superArray: CalendarDay[][]) {

@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/shared/auth.service';
 import { compareMonths } from '../validators/compare-month';
 import { YearAsyncValidator } from '../validators/year-async-validator';
 
-export function getCalendarYearForm() {
+export function getCalendarYearCreateDialogForm() {
   const fb = new FormBuilder();
   const service = new CalendarYearService(
     new AuthService(),

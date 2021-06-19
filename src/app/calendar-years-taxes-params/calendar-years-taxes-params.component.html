@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <form [formGroup]="form" *ngIf="form" class="responsive-table">
+    <form [formGroup]="form" *ngIf="form && calendarYear" class="responsive-table">
       <mat-accordion multi>
         <mat-expansion-panel formArrayName="calendarMonths" *ngFor="let month of calendarMonths().controls; index as i">
           <mat-expansion-panel-header>

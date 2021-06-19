@@ -1,0 +1,18 @@
+<div class="header-container" *ngIf="calendarYear">
+  <div class="header">Изменение доходов по дням</div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="subheader-container">
+    <div class="subheader"> {{calendarYear.yearNumber}}</div>
+    <div style="margin-bottom: 6px;">
+      <mat-icon class="icon-settings" (click)="goToMonthIncomeReport(calendarYear)">receipt_long</mat-icon>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="20px" class="checkbox-container">
+    <app-checkbox *ngFor="let calendarMonth of calendarYear.calendarMonths"
+      [longMonthName]="calendarMonth.longMonthName" [monthNumber]="calendarMonth.monthNumber"></app-checkbox>
+  </div>
+
+  <ng-container *ngFor="let calendarMonth of calendarYear.calendarMonths">
+    <app-echarts [calendarMonth]="calendarMonth"></app-echarts>
+  </ng-container>
+</div>

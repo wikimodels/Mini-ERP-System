@@ -1,0 +1,19 @@
+table {
+  width: 90vw;
+}
+
+@media screen and (max-width: 900px) {
+  table {
+    width: 100vw;
+  }
+}
+
+.display-table {
+  display: block;
+}
+.non-display-table {
+  display: none;
+}
+h2 {
+  font-weight: 300;
+}

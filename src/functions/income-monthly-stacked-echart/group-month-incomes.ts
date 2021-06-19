@@ -1,6 +1,6 @@
-import { CalendarMonth } from 'src/models/calendar-month.model';
 import * as _ from 'lodash';
-import { DayIncome } from 'src/models/income-yearly-report/day-income.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+
 import { GrouppedMonthIncomeItem } from 'src/models/echart-income-stacked/groupped-month-income-item.model';
 import { GrouppedMonthIncome } from 'src/models/echart-income-stacked/groupped-month-income.model';
 import { getAllDayIncomesForMonth } from '../income-monthly-echart/get-all-day-incomes-for-month';

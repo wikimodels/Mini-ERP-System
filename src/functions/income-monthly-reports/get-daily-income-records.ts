@@ -1,5 +1,5 @@
-import { CalendarMonth } from 'src/models/calendar-month.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 import { IncomeMonthlyRecord } from 'src/models/income-monthly-report/income-monthly-record.model';
 import { addLeadingZero } from '../add-leading-zero';
 

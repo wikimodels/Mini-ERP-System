@@ -1,0 +1,77 @@
+<ng-container *ngIf="yearTaxesReport">
+  <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%; margin: 30px 0">
+    <div class="header">Налоговые выплаты</div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="subheader-container">
+      <div class="subheader"> {{calendarYear.yearNumber}}</div>
+      <div style='margin-bottom: 6px; cursor: pointer;'>
+        <mat-icon class="icon-settings" (click)="goToSettings()">settings</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <ng-container>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Month Column -->
+      <ng-container matColumnDef="month">
+        <th mat-header-cell *matHeaderCellDef> Месяц </th>
+        <td mat-cell *matCellDef="let item"> {{item.shortMonthName}} </td>
+        <td mat-footer-cell *matFooterCellDef> Итого </td>
+      </ng-container>
+
+      <!-- Income Column -->
+      <ng-container matColumnDef="income">
+        <th mat-header-cell *matHeaderCellDef> Доход </th>
+        <td mat-cell *matCellDef="let item"> {{item.income}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{yearTaxesReport.yearTotalIncome| number: "2."}} </td>
+      </ng-container>
+
+      <!-- PensionTax Column -->
+      <ng-container matColumnDef="pensionTax">
+        <th mat-header-cell *matHeaderCellDef> Пенсион. </th>
+        <td mat-cell *matCellDef="let item">{{item.calculatedPensionTax| number: "2."}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{yearTaxesReport.yearPensionTax| number: "2."}} </td>
+      </ng-container>
+
+      <!-- PensionTaxRate Column -->
+      <ng-container matColumnDef="pensionTaxRate">
+        <th mat-header-cell *matHeaderCellDef> Ставка пенс. налога</th>
+        <td mat-cell *matCellDef="let item">{{item.pensionTaxRate}}% </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- SocialTax Column -->
+      <ng-container matColumnDef="socialTax">
+        <th mat-header-cell *matHeaderCellDef>Соцстрах</th>
+        <td mat-cell *matCellDef="let item"> {{item.calculatedSocialTax| number: "2."}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{yearTaxesReport.yearSocialTax| number: "2."}} </td>
+      </ng-container>
+
+      <!-- SocialTaxRate Column -->
+      <ng-container matColumnDef="socialTaxRate">
+        <th mat-header-cell *matHeaderCellDef>Соцстрах</th>
+        <td mat-cell *matCellDef="let item"> {{item.socialTaxRate}}%</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <!-- TotalTax Column -->
+      <ng-container matColumnDef="totalTax">
+        <th mat-header-cell *matHeaderCellDef>Всего</th>
+        <td mat-cell *matCellDef="let item"> {{item.calculatedTotalTax| number: "2."}} </td>
+        <td mat-footer-cell *matFooterCellDef>{{yearTaxesReport.yearSocialTax + yearTaxesReport.yearPensionTax| number:
+          "2."}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
+
+  </ng-container>
+
+  <!-- NO RECORDS IN TABLE -->
+  <ng-container *ngIf="dataSource.length === 0">
+    <div fxLayout="row" fxLayoutAlign="space-around" class="table-subheader">
+      <span>В таблице пока нет записей</span>
+    </div>
+  </ng-container>
+</ng-container>

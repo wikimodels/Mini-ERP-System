@@ -1,0 +1,11 @@
+<div [hidden]="!showTable" class="echarts-container">
+  <h2 style="text-align: center"><i>{{calendarMonth.longMonthName}}</i></h2>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Динамика доходов">
+      <app-combined-chart [calendarMonth]="calendarMonth"></app-combined-chart>
+    </mat-tab>
+    <mat-tab label="Состав доходов">
+      <app-stacked-chart [calendarMonth]="calendarMonth"></app-stacked-chart>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +26,9 @@ import { IncomeTypeDialogComponent } from './income-types/income-type-dialog/inc
 import { CalendarYearsTaxesParamsComponent } from './calendar-years-taxes-params/calendar-years-taxes-params.component';
 import { MonthsIncomeReportComponent } from './months-income-report/months-income-report.component';
 import { MonthIncomeExpansionPanelComponent } from './months-income-report/month-income-expansion-panel/month-income-expansion-panel.component';
+import { CalendarYearsArchiveComponent } from './calendar-years-archive/calendar-years-archive.component';
+import { CalendarYearsArchiveDialogComponent } from './calendar-years-archive/calendar-years-archive-dialog/calendar-years-archive-dialog.component';
+import { AnalyticsModule } from './analytics/analytics.module';
 
 @NgModule({
   imports: [
@@ -39,6 +41,7 @@ import { MonthIncomeExpansionPanelComponent } from './months-income-report/month
     BasicSnackbarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AnalyticsModule,
   ],
   declarations: [
     AppComponent,
@@ -58,6 +61,8 @@ import { MonthIncomeExpansionPanelComponent } from './months-income-report/month
     IncomeTypesComponent,
     MonthIncomeExpansionPanelComponent,
     MonthsIncomeReportComponent,
+    CalendarYearsArchiveComponent,
+    CalendarYearsArchiveDialogComponent,
   ],
 
   providers: [

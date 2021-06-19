@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import { CalendarMonth } from 'src/models/calendar-month.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function getMonthIncomeTypeNames(
   calendarMonth: CalendarMonth

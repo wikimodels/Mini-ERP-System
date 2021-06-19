@@ -1,6 +1,6 @@
 import { ActivityPeriod } from 'src/models/activity-report/activity-period.model';
 import { ActivityReport } from 'src/models/activity-report/activity-report.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function sumupActivityDays(
   activityPeriods: ActivityPeriod[]

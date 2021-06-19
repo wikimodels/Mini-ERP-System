@@ -1,0 +1,22 @@
+.subheader-container {
+  width: 80px;
+  height: 40px;
+}
+.subheader {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+.header {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}

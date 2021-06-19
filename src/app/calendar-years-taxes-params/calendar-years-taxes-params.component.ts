@@ -1,4 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,18 +25,21 @@ import { CalendarYearService } from '../services/core/calendar-year.service';
   templateUrl: './calendar-years-taxes-params.component.html',
   styleUrls: ['./calendar-years-taxes-params.component.css'],
 })
-export class CalendarYearsTaxesParamsComponent implements OnInit, OnDestroy {
+export class CalendarYearsTaxesParamsComponent
+  implements OnInit, AfterViewChecked, OnDestroy
+{
   calendarYear: CalendarYear;
   sub: Subscription;
   form: FormGroup;
   @ViewChild(MatAccordion) accordion: MatAccordion;
-  hide = true;
+  hide: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
     private snackbar: BasicSnackbarService,
     private calenarYearTaxesParamService: CalendarYearTaxesParamsService,
-    private calendarYearService: CalendarYearService
+    private calendarYearService: CalendarYearService,
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -37,15 +49,20 @@ export class CalendarYearsTaxesParamsComponent implements OnInit, OnDestroy {
       .calendarYearById$(yearId)
       .subscribe((value) => {
         console.log('value', value);
-        console.log(value);
         this.calendarYear = value;
         this.form = getCalendarYearsTaxesParamsFormGroup(this.calendarYear);
         console.log(this.form);
       });
   }
+
+  ngAfterViewChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
+
   calendarMonths(): FormArray {
     return this.form.get('calendarMonths') as FormArray;
   }
+
   onSubmit() {
     if (this.form.status === 'VALID') {
       const calendarMonths = this.form.getRawValue().calendarMonths;

@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="header-container" *ngIf="calendarYear">
+  <div class="header">Список доходов</div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="subheader-container">
+    <div class="subheader"> {{calendarYear.yearNumber}}</div>
+    <div style="margin-bottom: 6px">
+      <mat-icon class="icon-settings" (click)="goToMonthIncomeReport(calendarYear)">receipt_long</mat-icon>
+    </div>
+  </div>
+
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="20px" class="checkbox-container">
+    <app-checkbox *ngFor="let item of incomeMonthlyReports" [longMonthName]="item.longMonthName"
+      [monthNumber]="item.monthNumber"></app-checkbox>
+  </div>
+
+  <ng-container *ngFor="let item of incomeMonthlyReports; let i = index">
+    <app-data-table [incomeMonthlyRecords]="item.incomeMonthlyRecords"
+      [monthNumber]="incomeMonthlyReports[i].monthNumber" [longMonthName]="incomeMonthlyReports[i].longMonthName">
+    </app-data-table>
+  </ng-container>
+</div>

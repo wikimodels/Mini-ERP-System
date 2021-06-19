@@ -1,0 +1,48 @@
+td.mat-cell {
+  text-align: center;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+
+.subheader-container {
+  width: 80px;
+  height: 40px;
+}
+.subheader {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+.header {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+.data-table {
+  margin-bottom: 30px;
+}
+.header-container {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.action {
+  background-color: fuchsia;
+}
+.non-action {
+  background-color: bisque;
+}
+.not-defined {
+  background-color: aqua;
+}

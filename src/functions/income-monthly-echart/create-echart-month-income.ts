@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
-import { CalendarMonth } from 'src/models/calendar-month.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+
 import { EchartMonthIncome } from 'src/models/echart-income/echart-month-income.model';
 import { DayIncome } from 'src/models/income-yearly-report/day-income.model';
 

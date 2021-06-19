@@ -1,7 +1,8 @@
 import * as _ from 'lodash';
-import { CalendarMonth } from 'src/models/calendar-month.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+
 import { EchartDayIncome } from 'src/models/echart-income/echart-day-income.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function groupDayIncomes(
   calendarMonth: CalendarMonth

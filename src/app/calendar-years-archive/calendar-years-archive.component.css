@@ -1,0 +1,33 @@
+td.mat-cell {
+  text-align: center;
+}
+th.mat-header-cell {
+  text-align: center;
+}
+
+.table-header {
+  font-size: 18px;
+  font-weight: 500;
+}
+/* .table-subheader {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: 300;
+} */
+.data-table {
+  width: 100%;
+}
+
+.mat-column-edit,
+.mat-column-report,
+.mat-column-calendar-view,
+.mat-column-settings,
+.mat-column-calendar-view {
+  width: 10% !important;
+}
+.mat-column-workingYear {
+  width: 10% !important;
+}
+.mat-column-delete {
+  width: 6% !important;
+}

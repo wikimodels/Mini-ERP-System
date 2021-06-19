@@ -1,0 +1,41 @@
+<div style="margin-bottom: 30px;" [hidden]="!showTable">
+  <h2 style="text-align: center"> <i>{{longMonthName}}</i></h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="dayDate"
+    matSortDisableClear matSortDirection="desc">
+    <!-- DayDate Column -->
+    <ng-container matColumnDef="dayDate">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Дата </th>
+      <td mat-cell *matCellDef="let item"> {{moment(item.dayDate).locale('ru').format("DD MMM YYYY")}} </td>
+    </ng-container>
+
+    <!-- DocNumber Column -->
+    <ng-container matColumnDef="docNumber">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> № док-та </th>
+      <td mat-cell *matCellDef="let item"> {{item.docNumber}}</td>
+    </ng-container>
+
+    <!-- IncomeTypeName Column -->
+    <ng-container matColumnDef="incomeTypeName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Вид дохода </th>
+      <td mat-cell *matCellDef="let item">{{item.incomeTypeName}}</td>
+    </ng-container>
+
+    <!-- IncomeSum Column -->
+    <ng-container matColumnDef="incomeSum">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Сумма, руб</th>
+      <td mat-cell *matCellDef="let item">{{item.incomeSum |number: "2."}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator class="data-table" [length]="resultsLength" [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+
+
+  <!-- NO RECORDS IN TABLE -->
+  <ng-container *ngIf="dataSource && dataSource.length === 0">
+    <div fxLayout="row" fxLayoutAlign="space-around" class="table-subheader">
+      <span>В таблице пока нет записей</span>
+    </div>
+  </ng-container>
+</div>

@@ -1,5 +1,5 @@
-import { CalendarMonth } from 'src/models/calendar-month.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 import { DayIncome } from 'src/models/income-yearly-report/day-income.model';
 
 export function getAllDayIncomesForMonth(

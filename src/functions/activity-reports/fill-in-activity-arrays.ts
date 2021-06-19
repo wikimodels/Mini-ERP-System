@@ -1,5 +1,5 @@
-import { CalendarDay } from 'src/models/calendar-day.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarDay } from 'src/models/calendar-year/calendar-day.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function fillInActivityArrays(
   calendarDays: CalendarDay[]

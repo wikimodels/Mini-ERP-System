@@ -1,14 +1,15 @@
-import { CalendarMonth } from 'src/models/calendar-month.model';
 import * as _ from 'lodash';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarMonth } from 'src/models/calendar-year/calendar-month.model';
+
 import { GrouppedDayIncomeItem } from 'src/models/echart-income-stacked/groupped-day-income-item.model';
 import { GrouppedDayIncome } from 'src/models/echart-income-stacked/groupped-day-income.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function groupDayIncomes(
   calendarMonth: CalendarMonth
 ): GrouppedDayIncome[] {
-  const grouppedDayIncomes: GrouppedDayIncome[] = calendarMonth.calendarDays.reduce(
-    (acc, day) => {
+  const grouppedDayIncomes: GrouppedDayIncome[] =
+    calendarMonth.calendarDays.reduce((acc, day) => {
       if (day.dayActivityType === DayActivityType.WORKING) {
         const grouppedIncomes: GrouppedDayIncomeItem[] = _(day.dayIncomes)
           .groupBy((day) => day.incomeTypeName)
@@ -27,9 +28,7 @@ export function groupDayIncomes(
         acc.push(obj);
       }
       return acc;
-    },
-    []
-  );
+    }, []);
 
   return grouppedDayIncomes;
 }

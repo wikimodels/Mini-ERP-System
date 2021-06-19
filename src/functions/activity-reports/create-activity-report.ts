@@ -1,6 +1,7 @@
 import { ActivityPeriod } from 'src/models/activity-report/activity-period.model';
 import { ActivityReport } from 'src/models/activity-report/activity-report.model';
-import { CalendarYear } from 'src/models/calendar-year.model';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
+
 import { cleanupCalendarDays } from './cleanup-calendar-days';
 import { createActivityPeriods } from './create-activity-periods';
 import { fillInActivityArrays } from './fill-in-activity-arrays';

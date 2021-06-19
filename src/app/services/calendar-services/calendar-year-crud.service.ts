@@ -6,6 +6,7 @@ import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
 import { getCopyToCalendarYear } from 'src/functions/calendar-year-dialog/get-copy-to-calendar-year';
 import { CalendarYearService } from '../core/calendar-year.service';
 import { AuthService } from '../shared/auth.service';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -29,24 +30,35 @@ export class CalendarYearCrudService {
     );
     calendarYear.id = Guid.create().toString();
     calendarYear.email = this.authService.getUserEmail();
-    return this.calendarYearService.insertCalendarYear$(calendarYear);
+    return this.calendarYearService
+      .insertCalendarYear$(calendarYear)
+      .pipe(switchMap(() => this.calendarYearService.calendarYeasByEmail$()));
   }
 
-  updateWorkingYear$(
+  updateCalendarYear$(
     monthActivityStart: number,
     monthActivityEnd: number,
-    workingYear: CalendarYear
+    copyFromCalendarYear: CalendarYear
   ) {
-    const copyTo: CalendarYear = getCopyToCalendarYear(
+    const copyToCalendarYear: CalendarYear = getCopyToCalendarYear(
       monthActivityStart,
       monthActivityEnd,
-      workingYear.yearNumber
+      copyFromCalendarYear.yearNumber,
+      this.authService.getUserEmail()
     );
-    const calendarYear = copyCalendarYear(workingYear, copyTo);
-    return this.calendarYearService.updateCalendarYear$(calendarYear);
+    const calendarYear = copyCalendarYear(
+      copyFromCalendarYear,
+      copyToCalendarYear
+    );
+
+    return this.calendarYearService
+      .updateCalendarYear$(calendarYear)
+      .pipe(switchMap(() => this.calendarYearService.calendarYeasByEmail$()));
   }
 
-  deleteWorkingYear$(year: CalendarYear) {
-    return this.calendarYearService.deleteCalendarYear$(year);
+  deleteCalendarYear$(calendarYear: CalendarYear) {
+    return this.calendarYearService
+      .deleteCalendarYear$(calendarYear)
+      .pipe(switchMap(() => this.calendarYearService.calendarYeasByEmail$()));
   }
 }

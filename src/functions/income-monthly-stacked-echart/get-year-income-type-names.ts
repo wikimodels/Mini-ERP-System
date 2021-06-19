@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
-
-import { CalendarYear } from 'src/models/calendar-year.model';
-import { DayActivityType } from 'src/models/day-activity-type.model';
+import { CalendarYear } from 'src/models/calendar-year/calendar-year.model';
+import { DayActivityType } from 'src/models/enums/day-activity-type.enum';
 
 export function getYearIncomeTypeNames(calendarYear: CalendarYear): string[] {
   const typeNames: string[] = [];
